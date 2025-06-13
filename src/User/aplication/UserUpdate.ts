@@ -26,6 +26,6 @@ export class UserUpdate {
             new UserCreatedAt(createdAt)
         );
 
-        return this.repository.updateUser(user);
+        await this.repository.updateUser(user);
     }
 }

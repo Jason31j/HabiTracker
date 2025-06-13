@@ -26,7 +26,7 @@ export class UserCreate{
             new UserCreatedAt(createdAt)
         );
 
-        return this.repository.createUser(user);
+        await this.repository.createUser(user);
     }       
 }
 

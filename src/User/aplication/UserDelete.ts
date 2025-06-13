@@ -5,6 +5,6 @@ export class UserDelete{
     constructor(private repository: UserRepository) {}
 
     async execute(id: string): Promise<void> {
-        return this.repository.deleteUser(new UserId(id));
+        await this.repository.deleteUser(new UserId(id));
     }
 }

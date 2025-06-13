@@ -1,21 +1,21 @@
-import { UserId } from './UserId';
+import { UserId} from './UserId';
 import { UserName } from './UserName';
 import { UserEmail } from './UserEmail';
 import { UserPassword } from './UserPassword';
 import { UserCreatedAt } from './UserCreatedAt';
 
 export class User {
-    id: UserId;
-    name: UserName;
-    email: UserEmail;
-    password: UserPassword;
-    createdAt: UserCreatedAt;
+    private readonly id: UserId;
+    private name: UserName;
+    private email: UserEmail;
+    private password: UserPassword;
+    private readonly createdAt: UserCreatedAt;
 
-    constructor(id: string, name: string, email: string, password: string) {
-        this.id = new UserId(id);
-        this.name = new UserName(name);
-        this.email = new UserEmail(email);
-        this.password = new UserPassword(password);
-        this.createdAt = new UserCreatedAt(new Date());
+    constructor(id: UserId, name: UserName, email: UserEmail, password: UserPassword, createdAt: UserCreatedAt) {
+        this.id = id;
+        this.name = name;
+        this.email =  email;
+        this.password = password;
+        this.createdAt = createdAt;
     }
 }

@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  app:
+    image: node:22-alpine
+    restart: unless-stopped
+    container_name: habiTracker_app
+    # ports:
+    #   - "3000:3000"
+    expose:
+      - "3000"
+    build:
+      dockerfile: ./node/Dockerfile
+    # volumes:
+    #   - .:/app
+    networks:
+      - habiTracker
+  db:
+    image: mongo:8.0.10
+    restart: unless-stopped
+    container_name: habiTracker_db
+    ports:
+      - "27017:27017"
+    expose:
+      - "27017"
+    volumes:
+      - db_data:/data/db
+    networks:
+      - habiTracker
+
+  nginx:
+    image: nginx:stable-alpine
+    restart: unless-stopped
+    container_name: habiTracker_nginx
+
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - habiTracker
+
+
+networks:
+  habiTracker:
+    driver: bridge
+
+volumes:
+  db_data:
+    driver: local

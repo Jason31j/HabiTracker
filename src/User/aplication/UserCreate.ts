@@ -18,6 +18,7 @@ export class UserCreate{
         password: string,
         createdAt: Date
     ): Promise<void> {
+        console.log(id, name, email, password, createdAt);
         const user = new User(
             new UserId(id),
             new UserName(name),

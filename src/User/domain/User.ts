@@ -5,11 +5,11 @@ import { UserPassword } from './UserPassword';
 import { UserCreatedAt } from './UserCreatedAt';
 
 export class User {
-    private readonly id: UserId;
-    private name: UserName;
-    private email: UserEmail;
-    private password: UserPassword;
-    private readonly createdAt: UserCreatedAt;
+    id: UserId;
+    name: UserName;
+    email: UserEmail;
+    password: UserPassword;
+    createdAt: UserCreatedAt;
 
     constructor(id: UserId, name: UserName, email: UserEmail, password: UserPassword, createdAt: UserCreatedAt) {
         this.id = id;

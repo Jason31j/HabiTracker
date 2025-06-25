@@ -1,15 +1,15 @@
 export class UserEmail {
-    readonly email:string;
+    value: string;
 
-    constructor(email:string){
-        if(!this.isValidEmail(email)) {
+    constructor(value:string){
+        if(!this.isValidEmail(value)) {
             throw new Error('Invalid email format');
         }
-        this.email = email;
+        this.value = value;
     }
 
-    private isValidEmail(email: string): boolean {
+    private isValidEmail(value: string): boolean {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
+        return emailRegex.test(value);
     }
 }

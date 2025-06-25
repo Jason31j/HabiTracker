@@ -5,16 +5,24 @@ services:
     image: node:22-alpine
     restart: unless-stopped
     container_name: habiTracker_app
-    # ports:
-    #   - "3000:3000"
+#    ports:
+#      - "3000:3000"
     expose:
       - "3000"
-    build:
-      dockerfile: ./node/Dockerfile
-    # volumes:
-    #   - .:/app
+    # build:
+    #   dockerfile: ./node/Dockerfile
+    volumes:
+      - .:/app
+    depends_on:
+      - db
     networks:
       - habiTracker
+    environment:
+      - MONGO_PORT=${MONGO_PORT}
+      - MONGO_HOST=${MONGO_HOST}
+      - MONGO_DB_NAME=${MONGO_DB_NAME}
+      - EXPRESS_PORT=${EXPRESS_PORT}
+
   db:
     image: mongo:8.0.10
     restart: unless-stopped
@@ -32,7 +40,6 @@ services:
     image: nginx:stable-alpine
     restart: unless-stopped
     container_name: habiTracker_nginx
-
     ports:
       - "80:80"
     volumes:
